@@ -24,6 +24,23 @@ end
     )
 end
 
+User.create!(
+  email: 'standard@motopedia.wiki',
+  password: 'password'
+)
+
+User.create!(
+  email: 'premium@motopedia.wiki',
+  password: 'password',
+  account: 'premium'
+)
+
+User.create!(
+  email: 'admin@motopedia.wiki',
+  password: 'password',
+  account: 'admin'
+)
+
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"

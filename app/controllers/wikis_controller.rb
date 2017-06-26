@@ -1,4 +1,8 @@
 class WikisController < ApplicationController
+  include ApplicationHelper
+
+  before_action :require_sign_in, except: [:show, :index]
+
   def show
     @wiki = Wiki.find(params[:id])
   end

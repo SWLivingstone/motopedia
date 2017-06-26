@@ -1,0 +1,59 @@
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>
+        <%= @wiki.title %>
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <p>
+        <%= @wiki.body %>
+      </p>
+    </div>
+    <div class="col-sm-4">
+      <div class="row edit-delete">
+        <div class="col-sm-6 edit">
+          <%= link_to "edit entry", edit_wiki_path(@wiki) %>
+        </div>
+        <div class="col-sm-6 delete">
+          <%= link_to "delete entry", @wiki, method: :delete %>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <tr>
+          <td><b>Manufacturer</b></td>
+          <td><%= @wiki.manufacture %></td>
+        </tr>
+        <tr>
+          <td><b>Year</b></td>
+          <td><%= @wiki.year %></td>
+        </tr>
+        <tr>
+          <td><b>Power</b></td>
+          <td><%= @wiki.hp %> hp</td>
+        </tr>
+        <tr>
+          <td><b>Torque</b></td>
+          <td><%= @wiki.torque %> nm</td>
+        </tr>
+        <tr>
+          <td><b>Displacement</b></td>
+          <td><%= @wiki.displacement %>cc</td>
+        </tr>
+        <tr>
+          <td><b>Cylinders</b></td>
+          <td><%= @wiki.cylinders %></td>
+        </tr>
+        <tr>
+          <td><b>Final Drive</b></td>
+          <td><%= @wiki.final_drive %></td>
+        </tr>
+        <tr>
+          <td><b>Category</b></td>
+          <td><%= @wiki.category %></td>
+        </tr>
+      </table>
+    </div>
+  </div>

@@ -1,0 +1,56 @@
+<%= form_for wiki do |f| %>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title, placeholder: "Enter Name of Motorcyle" %>
+      </div>
+      <div class="field">
+        <%= f.label :power %>
+        <%= f.number_field :hp, placeholder: "in HP" %>
+      </div>
+      <div class="field">
+        <%= f.label :torque %>
+        <%= f.number_field :torque, placeholder: "in NM" %>
+      </div>
+      <div class="field">
+        <%= f.label :displacement %>
+        <%= f.number_field :displacement, placeholder: "in CC" %>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <div class="field">
+        <%= f.label :manufacturer %>
+        <%= f.text_field :manufacture, placeholder: "Enter Name of Manufacturer" %>
+      </div>
+      <div class="field">
+        <%= f.label :year %>
+        <%= f.number_field :year, placeholder: "Model Year" %>
+      </div>
+      <div class="field">
+        <%= f.label :cylinders %>
+        <%= f.select :cylinders, [1, 2, 3, 4, 5, 6] %>
+      </div>
+      <div class="field">
+        <%= f.label :final_drive %>
+        <%= f.select :final_drive, ['chain', 'belt', 'shaft'] %>
+      </div>
+      <div class="field">
+        <%= f.label :category %>
+        <%= f.select :category, ['adventure', 'dual_sport', 'sport',
+          'naked', 'touring', 'cruiser', 'custom', 'dirt', 'roadster'] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10">
+      <div class="markdown">
+        <%= f.label :body %>
+        <%= f.text_area :body, placeholder: "Enter Motorcyle Description" %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit "Save" %>
+<% end %>

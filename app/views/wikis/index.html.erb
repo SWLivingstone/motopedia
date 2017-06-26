@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      <% @wikis.each do |wiki| %>
+        <div>
+          <h4>
+            <%= link_to wiki.title, wiki %>
+            (<%= wiki.year %>)
+          </h4>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

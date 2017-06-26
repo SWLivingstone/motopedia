@@ -4,3 +4,33 @@
 .user-info {
   margin-top: 9px;
 }
+
+@media (min-width: 768px ) {
+  .sidebar {
+    border-color: lightgrey;
+    border-width: 0;
+    border-right-width: 1px;
+    border-style: solid;
+    height: 100vh;
+  }
+}
+
+@media (max-width: 768px) {
+    .edit-delete {
+      float: right;
+      display: inline-block;
+    }
+}
+
+.markdown {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.field {
+  margin-bottom: 5px;
+}
+
+.edit-delete {
+  margin-bottom: 5px;
+}

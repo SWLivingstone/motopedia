@@ -10,6 +10,16 @@
 <body>
   <div class="container">
     <ul class="nav nav-tabs">
+      <% if current_user && is_standard_user? %>
+        <div class="pull-left premium">
+          <%= link_to "Become a Premium User", new_charge_path %>
+        </div>
+      <% end %>
+      <% if current_user && is_premium_user? %>
+      <div class="pull-left premium">
+        <%= link_to "Cancle Premium Membership", charge_path(current_user), method: :delete, data: {confirm: "Are you sure that you want to cancel your subscription? NOTE: All of your private wikis will become public."} %>
+      </div>
+      <% end %>
       <div class="pull-right user-info">
         <% if current_user %>
         <div>

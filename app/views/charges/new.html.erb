@@ -1,0 +1,26 @@
+<h1>Become a Premium User at Motopedia</h1>
+<h4> What do you get with your Premium Membership?</h4>
+<ul>
+  <li>
+    Create private wikis that only you can edit!
+  </li>
+  <li>
+    Get a virtual 'High-Five' once a month!
+  </li>
+  <li>
+    The knowledge that you are helping to support an
+    independent project.
+  </li>
+</ul>
+<p>
+  Becoming a Premium Member at Motopedia is only $5 per month.
+  An amount of $5 will be charged to your credit card once a month.
+  You can cancel any time you like.  *note: When you cancel
+  any private wikis that you have created will become public.
+</p>
+<div class="pull-right">
+  <%= form_tag charges_path do %>
+    <h4>Subscribe Now!</h4>
+    <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+  <% end %>
+</div>

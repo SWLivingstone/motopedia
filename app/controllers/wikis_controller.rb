@@ -2,6 +2,7 @@ class WikisController < ApplicationController
   include ApplicationHelper
 
   before_action :require_sign_in, except: [:show, :index]
+  before_action :is_private_wiki_owner?, only: [:edit, :update, :destroy]
 
   def show
     @wiki = Wiki.find(params[:id])
@@ -61,5 +62,13 @@ class WikisController < ApplicationController
 
   def wiki_params
     params.require(:wiki).permit!
+  end
+
+  def is_private_wiki_owner?
+    wiki = Wiki.find(params[:id])
+    if wiki.private && not_current_owner(wiki)
+      flash[:notice] = "You are not the owner of this private wiki"
+      redirect_to [wiki]
+    end
   end
 end

@@ -1,11 +1,13 @@
 class WikisController < ApplicationController
   include ApplicationHelper
+  require 'redcarpet'
 
   before_action :require_sign_in, except: [:show, :index]
   before_action :is_private_wiki_owner?, only: [:edit, :update, :destroy]
 
   def show
     @wiki = Wiki.find(params[:id])
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, filter_html: true, strikethrough: true, highlight: true, quote: true, footnotes: true)
   end
 
   def index

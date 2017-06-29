@@ -1,0 +1,8 @@
+<%= form_for Collaborator.new do |f| %>
+  <%= f.label :User_email_address %>
+  <%= f.text_field  :user_id, placeholder: "Collaborators email address" %>
+  <div class="hidden">
+    <%= f.number_field :wiki_id, value: wiki %>
+  </div>  
+  <%= f.submit 'save' %>
+<% end %>

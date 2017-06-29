@@ -14,6 +14,24 @@
       <p>
         <%= @markdown.render(@wiki.body).html_safe  %>
       </p>
+      <br />
+      <h4>Owner/Creator</h4>
+      <h5>
+        <%= User.find_by(id: @wiki.user_id).email %>
+      </h5>
+      <br />
+      <% if any_collaborators?(@wiki) %>
+        <p>
+          <h4>Collaborators</h4>
+          <ul>
+            <% Collaborator.where(wiki_id: @wiki.id).each do |collaborator| %>
+              <li>
+                <%= User.find_by(id: collaborator.user_id).email %>
+              </li>
+            <% end %>
+          </ul>
+        </p>
+      <% end %>
     </div>
     <div class="col-sm-4">
       <% unless @wiki.private && not_current_owner(@wiki) %>

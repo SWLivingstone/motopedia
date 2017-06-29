@@ -39,6 +39,11 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.assign_attributes(wiki_params)
 
+    unless Collaborator.find_by(user_id: current_user.id, wiki_id: @wiki.id)
+      Collaborator.create!(user_id: current_user.id, wiki_id: @wiki.id)
+    end
+
+
     if @wiki.save
       flash[:notice] = "Entry was updated"
       redirect_to [@wiki]

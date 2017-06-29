@@ -24,6 +24,13 @@ end
     )
 end
 
+10.times do
+  Collaborator.create!(
+    user: User.all.sample,
+    wiki: Wiki.all.sample
+  )
+end
+
 User.create!(
   email: 'standard@motopedia.wiki',
   password: 'password'
@@ -42,5 +49,6 @@ User.create!(
 )
 
 puts "Seed finished"
+puts "#{Collaborator.count} collaberations created"
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"

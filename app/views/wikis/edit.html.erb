@@ -1,2 +1,5 @@
 <h1>Edit Entry</h1>
 <%= render partial: "wikis/form", locals: { wiki: @wiki } %>
+<% if is_premium_user? && wiki_owner(@wiki) %>
+  <%= render partial: "collaborators/add_collaborators", locals: {wiki: @wiki.id} %>
+<% end %>

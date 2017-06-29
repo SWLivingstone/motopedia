@@ -45,7 +45,7 @@
 
   <div class="row">
     <div class="col-sm-10">
-      <% if is_premium_user? && wiki_owner(@wiki) %>
+      <% if is_premium_user? && ( wiki_owner(@wiki) || new_wiki ) %>
         <%= f.label :private? %>
         <%= f.check_box :private %>
       <% end %>

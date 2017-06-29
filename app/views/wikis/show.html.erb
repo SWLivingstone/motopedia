@@ -34,7 +34,6 @@
       <% end %>
     </div>
     <div class="col-sm-4">
-      <% unless @wiki.private && not_current_owner(@wiki) %>
         <div class="row edit-delete">
           <div class="col-sm-6 edit">
             <%= link_to "edit entry", edit_wiki_path(@wiki) %>
@@ -43,7 +42,6 @@
             <%= link_to "delete entry", @wiki, method: :delete, data: {confirm: "Are you sure?"} %>
           </div>
         </div>
-      <% end %>
       <table class="table table-striped">
         <tr>
           <td><b>Manufacturer</b></td>

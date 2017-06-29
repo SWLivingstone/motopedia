@@ -3,7 +3,7 @@ class WikisController < ApplicationController
   require 'redcarpet'
 
   before_action :require_sign_in, except: [:show, :index]
-  before_action :is_private_wiki_owner?, only: [:edit, :update, :destroy]
+  before_action :is_private_wiki_owner_or_collaborator? , only: [:edit, :update, :destroy]
 
   def show
     @wiki = Wiki.find(params[:id])
@@ -71,10 +71,10 @@ class WikisController < ApplicationController
     params.require(:wiki).permit!
   end
 
-  def is_private_wiki_owner?
+  def is_private_wiki_owner_or_collaborator?
     wiki = Wiki.find(params[:id])
-    if wiki.private && not_current_owner(wiki)
-      flash[:notice] = "You are not the owner of this private wiki"
+    unless wiki.private && (wiki_owner(wiki) || is_collaborator?(current_user.id, wiki.id))
+      flash[:alert] = "You are not the owner or a collaborator of this private wiki"
       redirect_to [wiki]
     end
   end

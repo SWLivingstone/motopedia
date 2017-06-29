@@ -27,6 +27,14 @@ module ApplicationHelper
     Collaborator.where(wiki_id: wiki.id).first
   end
 
+  def not_a_collaborator(user, wiki)
+    if Collaborator.where(user_id: user, wiki_id: wiki).first
+      return false
+    else
+      true
+    end
+  end
+
   def is_collaborator?(user, wiki)
     Collaborator.where(user_id: user, wiki_id: wiki).first
   end

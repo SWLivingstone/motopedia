@@ -1,3 +1,10 @@
+<script>
+  var editor = new EpicEditor({
+    base: "<%= asset_path 'epiceditor/themes/base/epiceditor.css' %>",
+    preview: "<%= asset_path 'epiceditor/themes/preview/preview-dark.css' %>",
+    editor: "<%= asset_path 'epiceditor/themes/editor/epic-dark.css' %>"}).load();
+</script>
+
 <%= form_for wiki do |f| %>
   <div class="row">
     <div class="col-sm-5">
@@ -50,11 +57,14 @@
         <%= f.check_box :private %>
       <% end %>
       <div class="markdown">
-        <%= f.label :body %>
-        <%= f.text_area :body, placeholder: "Enter Motorcyle Description", class: "body" %>
+        <div id="epiceditor">
+            <%= f.label :body %>
+            <%= f.text_area :body, placeholder: "Enter Motorcyle Description", class: "body" %>
+        </div>
       </div>
     </div>
   </div>
+  <br />
 
   <%= f.submit "Save" %>
 <% end %>

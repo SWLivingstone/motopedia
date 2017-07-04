@@ -73,9 +73,11 @@ class WikisController < ApplicationController
 
   def is_private_wiki_owner_or_collaborator?
     wiki = Wiki.find(params[:id])
-    unless wiki.private && (wiki_owner(wiki) || is_collaborator?(current_user.id, wiki.id))
-      flash[:alert] = "You are not the owner or a collaborator of this private wiki"
-      redirect_to [wiki]
+    if wiki.private
+      unless (wiki_owner(wiki) || is_collaborator?(current_user.id, wiki.id))
+        flash[:alert] = "You are not the owner or a collaborator of this private wiki"
+        redirect_to [wiki]
+      end
     end
   end
 end

@@ -1,0 +1,9 @@
+
+<div id="filterrific_results">
+  <% wikis.each do |wiki| %>
+    <h4>
+      <%= link_to wiki.title, wiki %>
+      (<%= wiki.year %>)
+    </h4>
+  <% end %>
+</div>

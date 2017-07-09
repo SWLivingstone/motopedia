@@ -12,6 +12,22 @@ class WikisController < ApplicationController
 
   def index
     @wikis = Wiki.all
+    @filterrific = initialize_filterrific(
+      Wiki,
+      params[:filterrific],
+      select_options: {
+        sorted_by: Wiki.options_for_sorted_by,
+      },
+      available_filters: [:sorted_by]
+    ) or return
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    rescue ActiveRecord::RecordNotFound => e
+      puts "Had to reset filterrific params: #{ e.message }"
+      redirect_to(reset_filterrific_url(format: :html)) and return
   end
 
   def new

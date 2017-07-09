@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require epiceditor
+//= require filterrific/filterrific-jquery
 //= require_tree .

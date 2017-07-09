@@ -11,15 +11,16 @@ class WikisController < ApplicationController
   end
 
   def index
-    @wikis = Wiki.all
     @filterrific = initialize_filterrific(
       Wiki,
       params[:filterrific],
       select_options: {
         sorted_by: Wiki.options_for_sorted_by,
       },
-      available_filters: [:sorted_by]
+      available_filters: [:sorted_by, :search_query],
     ) or return
+
+    @wikis = @filterrific.find
 
     respond_to do |format|
       format.html

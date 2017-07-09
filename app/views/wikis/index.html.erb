@@ -1,34 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
-      <div>
+      <div class="search-box">
         <%= form_for_filterrific @filterrific do |f| %>
-        <div>
+        <div class="search">
           Search
           <%= f.text_field(
             :search_query,
             class: 'filterrific-periodically-observed'
           ) %>
         </div>
-        <div>
+        <div class="search">
           Sorted by
           <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
         </div>
-        <div>
-          <%= link_to(
-            'Reset filters',
-            reset_filterrific_url,
-          ) %>
-        </div>
         <%= render_filterrific_spinner %>
         <% end %>
-
-        <div>
-          <%= render(
-            partial: 'wikis/list',
-            locals: { wikis: @wikis }
-          ) %>
-        </div>
+      </div>
+      <div>
+        <%= render(
+          partial: 'wikis/list',
+          locals: { wikis: @wikis }
+        ) %>
       </div>
     </div>
   </div>

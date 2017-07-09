@@ -1,7 +1,6 @@
 class Wiki < ActiveRecord::Base
   belongs_to :user
   has_many :collaborators
-
   validates :body, presence: true
   validates :title,
     presence: true,
@@ -32,7 +31,7 @@ class Wiki < ActiveRecord::Base
     num_or_conds = 2
     where(
       terms.map { |term|
-        "(LOWER(students.first_name) LIKE ? OR LOWER(students.last_name) LIKE ?)"
+        "(LOWER(wikis.title) LIKE ? OR LOWER(wikis.manufacture) LIKE ?)"
       }.join(' AND '),
       *terms.map { |e| [e] * num_or_conds }.flatten
     )

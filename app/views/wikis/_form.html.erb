@@ -57,10 +57,17 @@
         <%= f.check_box :private %>
       <% end %>
       <div class="markdown">
-        <div id="epiceditor">
+        <% if new_wiki %>
+          <div id="epiceditor">
+            <%= f.label :body %>
+            <%= f.text_area :body, placeholder: "Enter Motorcyle Description", class: "body", value: "Write description here.  Markdown systanx accepted." %>
+          </div>
+        <% else %>
+          <div id="epiceditor">
             <%= f.label :body %>
             <%= f.text_area :body, placeholder: "Enter Motorcyle Description", class: "body" %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

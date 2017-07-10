@@ -20,7 +20,7 @@ class WikisController < ApplicationController
       available_filters: [:sorted_by, :search_query],
     ) or return
 
-    @wikis = @filterrific.find
+    @wikis = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html

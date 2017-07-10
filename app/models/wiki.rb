@@ -20,6 +20,9 @@ class Wiki < ActiveRecord::Base
     ]
   )
 
+    self.per_page = 20
+
+
   scope :search_query, lambda { |query|
     return nil  if query.blank?
 

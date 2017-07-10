@@ -1,0 +1,94 @@
+<% if current_user %>
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>Account Information</h3>
+      <ul>
+        <li>
+          Has been a member for
+          <%= time_ago_in_words(current_user.created_at) %>
+        </li>
+        <li>
+          Has created
+          <%= Wiki.where(user_id: current_user.id).count %>
+          entries
+        </li>
+        <li>
+          Has added to
+          <%= Collaborator.where(user_id: current_user.id).count %>
+          entries created by others
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-5">
+      <h3>Account Options</h3>
+      <ul>
+        <li>
+          <%= link_to "Change Password", edit_user_registration_path(current_user) %>
+        </li>
+        <li>
+          <%= link_to "Cancel my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete %>
+        </li>
+        <li>
+          <% if current_user && is_standard_user? %>
+              <%= link_to "Become a Premium User", new_charge_path %>
+          <% end %>
+          <% if current_user && is_premium_user? %>
+            <%= link_to "Cancle Premium Membership", charge_path(current_user), method: :delete, data: {confirm: "Are you sure that you want to cancel your subscription? NOTE: All of your private wikis will become public."} %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <h3>Entries Owned by Me</h3>
+      <div class="search-box">
+        <%= form_for_filterrific @filterrific do |f| %>
+        <div class="search">
+          Search
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed'
+          ) %>
+        </div>
+        <div class="search">
+          Sorted by
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+        </div>
+        <%= render_filterrific_spinner %>
+        <% end %>
+      </div>
+      <div>
+        <%= render(
+          partial: 'wikis/list',
+          locals: { wikis: @wikis_owned }
+        ) %>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <h3>My Collaborations</h3>
+      <div class="search-box">
+        <%= form_for_filterrific @filterrific_collabs do |f| %>
+        <div class="search">
+          Search
+          <%= f.text_field(
+            :search_query,
+            class: 'filterrific-periodically-observed'
+          ) %>
+        </div>
+        <div class="search">
+          Sorted by
+          <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
+        </div>
+        <%= render_filterrific_spinner %>
+        <% end %>
+      </div>
+      <div>
+        <%= render(
+          partial: 'wikis/list',
+          locals: { wikis: @wikis_collabs }
+        ) %>
+      </div>
+    </div>
+  </div>
+<% end %>

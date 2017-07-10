@@ -5,3 +5,39 @@
   </div>
   <h2>Your source for motorcycles</h2>
 </div>
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Recently Updated Entries</h3>
+    <% @recent_updates.each do |wiki| %>
+      <div>
+        <h4>
+          <%= link_to wiki.title, wiki %>
+        </h4>
+        <small>
+          Updated <%= time_ago_in_words(wiki.updated_at) %>
+          by <%= User.find_by(id: wiki.user_id).email %>
+        </small>
+        <p>
+          <%= wiki.body[0,150] %>...
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-6">
+    <h3>Recently Added Entries</h3>
+    <% @recently_created.each do |wiki| %>
+      <div>
+        <h4>
+          <%= link_to wiki.title, wiki %>
+        </h4>
+        <small>
+          Updated <%= time_ago_in_words(wiki.updated_at) %>
+          by <%= User.find_by(id: wiki.user_id).email %>
+        </small>
+        <p>
+          <%= wiki.body[0,150] %>...
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

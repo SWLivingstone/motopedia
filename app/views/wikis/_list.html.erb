@@ -1,5 +1,8 @@
 
 <div id="filterrific_results">
+  <div>
+    <%= page_entries_info wikis %>
+  </div>
   <% wikis.each do |wiki| %>
     <h4>
       <%= link_to wiki.title, wiki %>
@@ -7,3 +10,4 @@
     </h4>
   <% end %>
 </div>
+<%= will_paginate wikis %>

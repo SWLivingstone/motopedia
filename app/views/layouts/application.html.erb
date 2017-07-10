@@ -23,7 +23,7 @@
       <div class="pull-right user-info">
         <% if current_user %>
         <div>
-          <%= current_user.email %> |
+          <%= link_to "#{current_user.email}", user_path(current_user) %> |
           <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
         </div>
         <% else %>
@@ -51,8 +51,13 @@
         <li>
           <%= link_to "Motopedia", root_path %>
         </li>
+        <% if current_user %>
+          <li>
+            <%= link_to "My Profile", user_path(current_user) %>
+          </li>
+        <% end %>
         <li>
-          <%= link_to "Full Index", wikis_path %>
+          <%= link_to "Motorcycle Index", wikis_path %>
         </li>
         <li>
           <%= link_to "Add Motorcyle", new_wiki_path %>

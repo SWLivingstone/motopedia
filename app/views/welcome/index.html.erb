@@ -18,7 +18,7 @@
           by <%= User.find_by(id: wiki.user_id).email %>
         </small>
         <p>
-          <%= wiki.body[0,150] %>...
+          <%= @markdown.render(wiki.body[0,150]).html_safe  %>...
         </p>
       </div>
     <% end %>
@@ -35,7 +35,7 @@
           by <%= User.find_by(id: wiki.user_id).email %>
         </small>
         <p>
-          <%= wiki.body[0,150] %>...
+          <%= @markdown.render(wiki.body[0,150]).html_safe  %>...
         </p>
       <% end %>
     </div>
